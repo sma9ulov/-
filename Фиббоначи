@@ -1,0 +1,54 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using std ::string;
+using std ::cout;
+using std ::cin;
+using std ::vector;
+using std ::endl;
+
+
+int main() {
+    int num;
+    cin >> num;
+    vector <vector<int>> vec;
+    for (int i = 0; i < num; ++i) {
+        int bab;
+        cin >> bab;
+        vector <int> temp = { bab, i };
+        vec.push_back(temp);
+    }
+    int icon = 0;
+    int xox = 1;
+    int you = 1;
+    vector<string> road(num);
+    while (icon < num) {
+        int key = 1;
+        while (icon < num - 1 and vec[icon][0] == vec[icon+1][0]) {
+            icon += 1;
+            key += 1;
+        }
+        while (vec[icon][0] > you) {
+            int time = xox;
+            xox = you;
+            you = you + time;
+        }
+        string res;
+        if (vec[icon][0] == you) {
+            res = "Yes";
+        }
+        else 
+        {
+            res = "No";
+        }
+        for (int j = 0; j < key; ++j) {
+            road[vec[icon-j][1]] = res;
+        }
+        icon += 1;
+    }
+    for (auto q : road) {
+        cout << q << endl;
+    }
+    return 0;
+}
